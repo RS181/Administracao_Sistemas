@@ -1,0 +1,42 @@
+#!/bin/bash
+
+
+soma=0
+count=0
+maximo=0
+minimo=0
+
+# Executa o comando ls --full-time e lê o resultado linha a linha
+while read -r linha; 
+do
+    #echo $linha
+
+    epoch=$(date -d "$linha" +%s)
+    
+    # Atualiza o mínimo e o máximo
+    if [[ $count -eq 0 ]]; then
+        # Para o primeiro valor, inicializa mínimo e máximo
+        minimo=$epoch
+        maximo=$epoch
+    else
+        if [[ $epoch -lt $minimo ]]; then
+            minimo=$epoch
+        fi
+        if [[ $epoch -gt $maximo ]]; then
+            maximo=$epoch
+        fi
+    fi
+    
+    ((count++))
+    soma=$(( soma + epoch))
+
+done < <(ls --full-time /etc | awk '{print $6,$7}')
+
+echo "soma total : "$soma
+echo "numero linhas : "$count
+
+let media=$soma/$count
+echo "media: "$media
+echo "mínimo Epoch: $minimo"
+echo "máximo Epoch: $maximo"
+

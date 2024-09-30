@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+users_names=$(cut -f 1 -d:  /etc/passwd)
+
+for username in $users_names
+do
+    # a = group_id,user_list
+    a=$(cut -f 3,4 -d: /etc/group | grep $username)
+
+    # faz um ciclo forEach pelo resultado obtido acima
+    for i in $a
+    do 
+        group_id=$(echo $i | cut -f 1 -d:)
+        group_name=$(getent group $group_id | cut -f 1 -d: )
+        echo $group_name
+    done      
+    
+done
+
+
+
+
+
+
