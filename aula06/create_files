@@ -1,0 +1,17 @@
+#!/bin/bash
+for i in {1..8}; 
+    do dd if=/dev/zero of=arquivo_$i bs=1M count=100; done
+
+
+
+    #dd if=/dev/zero of=arquivo_$i bs=1M count=100; 
+
+    #dd: Comando usado para copiar e converter dados.
+
+    #if=/dev/zero: Especifica que a entrada será o dispositivo /dev/zero, que gera bytes nulos (zeros).
+
+    #of=arquivo_$i: Nome do arquivo de saída. O arquivo_$i cria os arquivos arquivo_1, arquivo_2, ..., arquivo_8.
+
+    #bs=1M: Tamanho do bloco de 1MB.
+
+    #count=100: Número de blocos a serem escritos. Multiplicando bs (1MB) por count (100), o tamanho final de cada arquivo será 100MB.

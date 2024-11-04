@@ -1,0 +1,8 @@
+#!/bin/bash
+for i in {1..8}; do sudo losetup -fP arquivo_$i; done
+
+#sudo losetup -fP:
+
+#-f: Procura automaticamente pelo próximo dispositivo loop livre (/dev/loopX).
+#-P: Configura automaticamente as partições do dispositivo loop (se houverem partições no arquivo).
+# arquivo_$i: Especifica o arquivo criado anteriormente (como arquivo_1, arquivo_2, ..., arquivo_8).
